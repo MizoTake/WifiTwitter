@@ -1,8 +1,12 @@
 ﻿using System;
+
+using Xamarin.Forms;
+
 namespace WifiTwitter
 {
-	public class TimeLineCell
+	public class TimeLineCell : ViewCell
 	{
+		public string CellNumber { get; set; }
 		//image uri
 		public string UserImageUri { get; set; }
 

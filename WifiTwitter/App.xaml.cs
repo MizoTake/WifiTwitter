@@ -4,17 +4,12 @@ namespace WifiTwitter
 {
 	public partial class App : Application
 	{
-		private HomePage home = new HomePage();
-		private LoginPage login = new LoginPage();
 
 		public App()
 		{
 			InitializeComponent();
 
-			//var nextPage = home;
-			var nextPage = login;
-
-			MainPage = new NavigationPage(nextPage)
+			MainPage = new NavigationPage(new LoginPage())
 			{
 				BarBackgroundColor = Color.FromRgba(0.2, 0.6, 0.86, 1),
 				BarTextColor = Color.White

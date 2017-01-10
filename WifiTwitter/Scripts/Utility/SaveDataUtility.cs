@@ -11,7 +11,7 @@ namespace WifiTwitter
 		/// <typeparam name="T">セーブするデータ型</typeparam>
 		/// <param name="dataKey">セーブデータのキー</param>
 		/// <param name="variable">対象の変数</param>
-		public static void Save<T>(string dataKey, T variable) where T : class
+		public static void Save<T>(string dataKey, T variable) where T : IComparable
 		{
 			Application.Current.Properties[dataKey] = variable;
 		}
@@ -22,9 +22,10 @@ namespace WifiTwitter
 		/// <typeparam name="T">ロードするデータ型</typeparam>
 		/// <param name="dataKey">セーブされたデータのキー</param>
 		/// <returns></returns>
-		public static T Load<T>(string dataKey) where T : class
+		public static T Load<T>(string dataKey) where T : IComparable
 		{
-			return (T)Application.Current.Properties[dataKey];
+			var data = Application.Current.Properties[dataKey];
+			return (T)data;
 		}
 
 		/// <summary>
@@ -56,13 +57,7 @@ namespace WifiTwitter
 		/// <returns></returns>
 		public static bool CheckData(string dataKey)
 		{
-			try
-			{
-				return Application.Current.Properties.ContainsKey(dataKey);
-			}
-			catch(Exception) {
-				return false;
-			}
+			return Application.Current.Properties.ContainsKey(dataKey);
 		}
 
 		/// <summary>

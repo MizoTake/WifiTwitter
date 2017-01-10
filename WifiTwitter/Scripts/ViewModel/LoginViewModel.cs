@@ -8,30 +8,20 @@ namespace WifiTwitter
 {
 	public class LoginViewModel
 	{
-		private const string API_KEY = "FzKhdsqL2lYyLDydKURCFhEVB";
-		private const string API_SECRET = "ID2MbQTy5nuBJ1zQIJfazNzbQDgvkeZYdokMKB48D9Rfvu97p1";
 		private OAuth.OAuthSession session;
 
 		public OAuth.OAuthSession Session { get { return session; } }
 
-		public LoginViewModel() { }
-
-		public async Task<bool> SaveToken(string pinCode) 
+		public async Task<bool> CreateToken(string pinCode) 
 		{
-			try
-			{
-				AppStaticVariables.Tokens = await session.GetTokensAsync(pinCode);
-				return true;
-			}
-			catch(Exception) {
-				return false;
-			}
+			return await TwitterTokenManager.Instance.CreateTokenForPinCode(session, pinCode);
 		}
 
-		public async void SetupLogin() 
+		public async Task<string> CreatePin() 
 		{
-			session = await OAuth.AuthorizeAsync(API_KEY, API_SECRET);
-			Device.OpenUri(new Uri(session.AuthorizeUri.AbsoluteUri));
+			session = await OAuth.AuthorizeAsync(TwitterTokenManager.CONSUMER_KEY, TwitterTokenManager.CONSUMER_SECRET);
+			//Device.OpenUri(new Uri(session.AuthorizeUri.AbsoluteUri));
+			return session.AuthorizeUri.AbsoluteUri;
 		}
 
 		public void OpenTwitterBrowser()

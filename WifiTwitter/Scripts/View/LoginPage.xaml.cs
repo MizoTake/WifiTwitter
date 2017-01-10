@@ -25,10 +25,21 @@ namespace WifiTwitter
 			var ok = this.FindByName<Button>("okButton");
 			ok.Clicked += async (sender, e) => 
 			{
-				if (await viewModel.SaveToken(pin.Text))
+				var check = await viewModel.CreateToken(pin.Text);
+				if (check)
 				{
 					await Navigation.PushModalAsync(new HomePage());
 				}
+				else {
+					await DisplayAlert("Your PinCode is incorrect.", "Please Retry", "OK");
+				}
+			};
+
+			var webView = this.FindByName<WebView>("web");
+			var cPin = this.FindByName<Button>("createPin");
+			cPin.Clicked += async (sender, e) => 
+			{
+				webView.Source = await viewModel.CreatePin();
 			};
 
 			var signup = this.FindByName<ToolbarItem>("SignupButton");
@@ -40,12 +51,9 @@ namespace WifiTwitter
 
 		private async void SetupApp()
 		{
-			if (SaveDataUtility.CheckData("tokens"))
+			if (TwitterTokenManager.Instance.MyToken != null)
 			{
 				await Navigation.PushModalAsync(new HomePage());
-			}
-			else {
-				viewModel.SetupLogin();
 			}
 		}
 	}
