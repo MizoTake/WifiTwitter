@@ -61,11 +61,12 @@
     </Compile>
     <Compile Include="Scripts\Utility\SaveDataUtility.cs" />
     <Compile Include="Scripts\Utility\EnumUtility.cs" />
+    <Compile Include="Scripts\Utility\AppStaticVariables.cs" />
+    <Compile Include="Scripts\Utility\TwitterTokenManager.cs" />
+    <Compile Include="Scripts\ViewModel\TimeLineViewModel.cs" />
     <Compile Include="Scripts\View\TimeLinePage.xaml.cs">
       <DependentUpon>TimeLinePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\Utility\TwitterTokenManager.cs" />
-    <Compile Include="Scripts\ViewModel\TimeLineViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />

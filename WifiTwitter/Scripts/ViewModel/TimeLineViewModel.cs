@@ -36,7 +36,7 @@ namespace WifiTwitter
 			foreach (var t in await TwitterTokenManager.Instance.MyToken.Statuses.HomeTimelineAsync(count => cells.Count))
 			{
 				Debug.WriteLine(cnt + " : " + t.Text);
-				TimeLineCells[cnt].CellNumber = cnt.ToString();
+				//TimeLineCells[cnt].CellNumber = cnt.ToString();
 				TimeLineCells[cnt].UserName = t.User.Name;
 				TimeLineCells[cnt].TweetText = t.Text;
 				cnt += 1;

@@ -18,7 +18,7 @@ namespace WifiTwitter
 			BindingContext = viewModel;
 
 			listView = this.FindByName<ListView>("list");
-			listView.Refreshing += async (sender, e) => 
+			listView.Refreshing += async (sender, e) =>
 			{
 				listView.IsRefreshing = true;
 				if (await viewModel.RefreshTimeLine())
